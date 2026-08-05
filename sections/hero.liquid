@@ -10,7 +10,13 @@
   </div>
   <div class="hero__content">
     <p class="eyebrow">Where fast fashion ends.</p>
-    <h1>{{ section.settings.heading }}</h1>
+    <h1 class="hero__brand">
+      {% if section.settings.hero_logo != blank %}
+        {{ section.settings.hero_logo | image_url: width: 1400 | image_tag: widths: '480,720,1000,1400', sizes: '(min-width: 900px) 42vw, 78vw', class: 'hero__brand-image', alt: section.settings.heading, loading: 'eager' }}
+      {% else %}
+        <img src="{{ 'hero-logo.png' | asset_url }}" class="hero__brand-image" width="1845" height="1150" alt="{{ section.settings.heading | escape }}" loading="eager">
+      {% endif %}
+    </h1>
     <p>{{ section.settings.subheading }}</p>
     <div class="hero__actions">
       {% render 'button', label: section.settings.primary_label, href: section.settings.primary_link, style: 'primary' %}
@@ -20,5 +26,5 @@
   {% render 'red-circle', class: 'hero__period' %}
 </section>
 {% schema %}
-{"name":"Homepage hero","settings":[{"type":"text","id":"heading","label":"Heading","default":"THELIVINGSTOP"},{"type":"text","id":"subheading","label":"Subheading","default":"Life. Period."},{"type":"url","id":"primary_link","label":"Primary link"},{"type":"text","id":"primary_label","label":"Primary label","default":"Shop New In"},{"type":"url","id":"secondary_link","label":"Secondary link"},{"type":"text","id":"secondary_label","label":"Secondary label","default":"Explore the Mission"},{"type":"image_picker","id":"image","label":"Fallback image"},{"type":"video","id":"video","label":"Hero video"}],"presets":[{"name":"Homepage hero"}]}
+{"name":"Homepage hero","settings":[{"type":"text","id":"heading","label":"Logo alt text","default":"THELIVINGSTOP"},{"type":"image_picker","id":"hero_logo","label":"Hero logo override"},{"type":"text","id":"subheading","label":"Subheading","default":"Life. Period."},{"type":"url","id":"primary_link","label":"Primary link"},{"type":"text","id":"primary_label","label":"Primary label","default":"Shop New In"},{"type":"url","id":"secondary_link","label":"Secondary link"},{"type":"text","id":"secondary_label","label":"Secondary label","default":"Explore the Mission"},{"type":"image_picker","id":"image","label":"Fallback image"},{"type":"video","id":"video","label":"Hero video"}],"presets":[{"name":"Homepage hero"}]}
 {% endschema %}

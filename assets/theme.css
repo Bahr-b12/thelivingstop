@@ -122,7 +122,8 @@ button, input, select, textarea { font: inherit; }
 .hero__media:after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28) 40%, rgba(0,0,0,.74)); }
 .hero__media img, .hero__media video { width: 100%; height: 100%; object-fit: cover; }
 .hero__content { position: relative; z-index: 1; padding: 0 var(--tls-pad) clamp(38px, 7vw, 86px); max-width: 1180px; }
-.hero h1 { margin: 0; max-width: 11ch; font-size: clamp(54px, 13vw, 184px); line-height: .78; text-transform: uppercase; font-weight: 900; overflow-wrap: anywhere; }
+.hero__brand { width: clamp(260px, 42vw, 560px); margin: 0; }
+.hero__brand-image { display: block; width: 100%; height: auto; }
 .hero p:not(.eyebrow) { font-size: clamp(18px, 2.2vw, 32px); font-weight: 800; margin: 18px 0 24px; text-transform: uppercase; }
 .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero__period { position: absolute; right: clamp(24px, 8vw, 132px); bottom: clamp(118px, 18vw, 260px); width: clamp(34px, 7vw, 108px); height: clamp(34px, 7vw, 108px); }
@@ -438,7 +439,13 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
   .site-logo__image { width: 126px; }
   .hero { min-height: calc(92svh - var(--tls-header)); }
   .hero h1 { font-size: clamp(48px, 19vw, 86px); }
-  .hero__actions .tls-button { flex: 1 1 180px; }
+  .hero { min-height: max(620px, calc(100svh - var(--tls-header))); }
+  .hero__content { padding-bottom: 32px; }
+  .hero__brand { width: min(300px, 78vw); }
+  .hero p:not(.eyebrow) { max-width: 18ch; margin: 14px 0 20px; font-size: 19px; line-height: 1.05; }
+  .hero__actions { width: min(100%, 320px); }
+  .hero__actions .tls-button { flex: 1 1 100%; }
+  .hero__period { display: none; }
   .section-heading--split, .site-footer__top { display: grid; }
   .trend-shortcuts__grid, .product-grid, .mission-band__grid, .brand-story__tiles, .product-page__gallery, .site-footer__columns { grid-template-columns: 1fr; }
   .community-grid__images { grid-template-columns: repeat(2, 1fr); }
