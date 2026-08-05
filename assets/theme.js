@@ -2,6 +2,28 @@
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
 
+  function setupCheckoutTerms() {
+    qsa('[data-checkout-terms-form], .cart-page__form').forEach((form) => {
+      const terms = qs('[data-checkout-terms-input]', form);
+      const submit = qs('[data-checkout-submit]', form);
+      const error = qs('[data-checkout-terms-error]', form);
+      if (!terms || !submit || form.dataset.termsReady === 'true') return;
+      form.dataset.termsReady = 'true';
+      const syncTerms = () => {
+        submit.disabled = !terms.checked;
+        if (terms.checked && error) error.hidden = true;
+      };
+      terms.addEventListener('change', syncTerms);
+      form.addEventListener('submit', (event) => {
+        if (event.submitter?.name !== 'checkout' || terms.checked) return;
+        event.preventDefault();
+        if (error) error.hidden = false;
+        terms.focus();
+      });
+      syncTerms();
+    });
+  }
+
   function setOpen(panel, open) {
     if (!panel) return;
     panel.classList.toggle('is-open', open);
@@ -24,7 +46,10 @@
     if (!html) return;
     const parsed = new DOMParser().parseFromString(html, 'text/html');
     const updated = qs('[data-cart-drawer]', parsed);
-    if (updated) drawer.replaceWith(updated);
+    if (updated) {
+      drawer.replaceWith(updated);
+      setupCheckoutTerms();
+    }
   }
 
   document.addEventListener('click', async (event) => {
@@ -112,6 +137,8 @@
   if (filterForm) {
     filterForm.addEventListener('change', () => filterForm.submit());
   }
+
+  setupCheckoutTerms();
 
   const mobileAtc = qs('[data-scroll-product-form]');
   if (mobileAtc) {

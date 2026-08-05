@@ -305,6 +305,15 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
 .cart-drawer__footer { display: grid; gap: 12px; border-top: 1px solid var(--tls-line); padding-top: 14px; }
 .cart-drawer__status:empty { display: none; }
 .cart-drawer__subtotal { display: flex; justify-content: space-between; font-weight: 900; text-transform: uppercase; }
+.checkout-terms-form { display: grid; gap: 10px; }
+.checkout-terms { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--tls-line); background: rgba(255,255,255,.72); }
+.checkout-terms__label { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.45; cursor: pointer; }
+.checkout-terms__label input { flex: 0 0 auto; width: 18px; height: 18px; min-height: 18px; margin: 0; accent-color: var(--tls-red); }
+.checkout-terms__details { font-size: 11px; line-height: 1.55; color: var(--tls-muted); }
+.checkout-terms__details summary { cursor: pointer; color: var(--tls-ink); font-weight: 800; text-transform: uppercase; }
+.checkout-terms__details p { margin: 8px 0 0; }
+.checkout-terms__error { margin: 0; color: var(--tls-red); font-size: 11px; font-weight: 800; }
+.checkout-terms + .tls-button:disabled, .checkout-terms-form .tls-button:disabled { opacity: .46; cursor: not-allowed; box-shadow: none; transform: none; }
 .cart-page__form { max-width: 960px; display: grid; gap: 16px; }
 .checkout-reassurance { display: grid; gap: 1px; background: var(--tls-line); }
 .checkout-reassurance div { background: white; color: var(--tls-ink); padding: 12px; display: grid; gap: 3px; }

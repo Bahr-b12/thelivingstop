@@ -6,12 +6,36 @@
   {% else %}
     <form action="{{ routes.cart_url }}" method="post" class="cart-page__form">
       {% for item in cart.items %}
+        {% liquid
+          assign cart_image = item.image | default: item.product.featured_image
+          assign cart_fallback = 'black-tee-male-1.jpg'
+          case item.product.handle
+            when 'life-period-tee-black', 'basic-black-tee-female'
+              assign cart_fallback = 'black-tee-male-1.jpg'
+            when 'life-period-tee-white', 'basic-white-tee-female'
+              assign cart_fallback = 'white-tee-male-1.jpg'
+            when 'concrete-gray-tee-male', 'concrete-gray-tee-female'
+              assign cart_fallback = 'gray-tee-male-1.jpg'
+            when 'babyblue-tee-male', 'babyblue-tee-female'
+              assign cart_fallback = 'babyblue-tee-male-1.jpg'
+            when 'black-polo-unisex'
+              assign cart_fallback = 'black-polo-unisex-1.jpg'
+            when 'gray-polo-female'
+              assign cart_fallback = 'gray-polo-female-1.jpg'
+            when 'matching-living-fit'
+              assign cart_fallback = 'matching-fit-1.jpg'
+            when 'white-basic-unisex'
+              assign cart_fallback = 'white-basic-unisex-1.jpg'
+            when 'stitches-handmade-detail'
+              assign cart_fallback = 'stitches-handmade-1.jpg'
+          endcase
+        %}
         <div class="cart-item">
           <a href="{{ item.url }}" class="cart-item__image">
-            {% if item.image %}
-              {{ item.image | image_url: width: 220 | image_tag: alt: item.product.title, loading: 'lazy' }}
+            {% if cart_image %}
+              {{ cart_image | image_url: width: 220 | image_tag: widths: '110,180,220', alt: item.product.title, loading: 'lazy' }}
             {% else %}
-              <img src="{{ 'logo-mark.png' | asset_url }}" alt="{{ item.product.title | escape }}" loading="lazy">
+              <img src="{{ cart_fallback | asset_url }}" alt="{{ item.product.title | escape }}" loading="lazy">
             {% endif %}
           </a>
           <div class="cart-item__content"><a href="{{ item.url }}">{{ item.product.title }}</a><span>{{ item.variant.title }}</span><label class="visually-hidden" for="CartQty-{{ forloop.index }}">Quantity for {{ item.product.title }}</label><input id="CartQty-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0"></div>
@@ -21,8 +45,9 @@
       <p>A full stop on fast fashion. A step toward Living Kits.</p>
       <div class="cart-drawer__subtotal"><span>Subtotal</span><strong>{{ cart.total_price | money }}</strong></div>
       {% render 'checkout-reassurance' %}
-      <button class="tls-button tls-button--secondary" type="submit" name="update">Update</button>
-      <button class="tls-button tls-button--primary" type="submit" name="checkout">Checkout</button>
+      {% render 'checkout-terms' %}
+      <button class="tls-button tls-button--secondary" type="submit" name="update" formnovalidate>Update</button>
+      <button class="tls-button tls-button--primary" type="submit" name="checkout" data-checkout-submit>Checkout</button>
     </form>
   {% endif %}
 </section>
