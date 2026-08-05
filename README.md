@@ -12,7 +12,7 @@ Production-ready Shopify Online Store 2.0 theme for THELIVINGSTOP.
 ## Included Structure
 
 - `layout/theme.liquid`
-- JSON templates for home, collection, product, cart, about, mission, and contact pages
+- JSON templates for home, collection, product, cart, about, mission, contact, and early-access signup pages
 - Section groups for sticky header and footer
 - Reusable snippets for logo, product cards, price, buttons, cart drawer, red-circle accent, and animation layer
 - `assets/theme.css` and `assets/theme.js`
@@ -49,6 +49,12 @@ The theme is prepared for these product handles. Import `D:\SHopify\THELIVINGSTO
 - `stitches-handmade-detail`
 
 Each handle has a matching local fallback gallery copied from `D:\SHopify\PRODUCTS shoots`. The product page always shows the requested material images: `t-shirt material  3.jpeg`, `t-shirt material 2.jpeg`, and `t-shirt material.jpeg`, optimized as theme assets.
+
+## Early Access Signup
+
+Create a Shopify page called `Sign up` and assign the `signup` template. It collects contact details, phone, location, preferred size, fit questions, and explicit launch-update consent through Shopify's native contact form. The footer and fallback navigation link to `/pages/signup`.
+
+For a pre-launch-only experience, use the separate theme at `D:\SHopify\thelivingstop-teaser-theme`. Create the `LIVING10` discount code in Shopify Admin before publishing it.
 
 ## Checkout
 

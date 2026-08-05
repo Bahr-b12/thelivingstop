@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "signup": { "type": "signup-form" },
+    "mission": { "type": "mission-band" }
+  },
+  "order": ["signup", "mission"]
+}

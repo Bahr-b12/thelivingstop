@@ -255,6 +255,23 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
 .rte { max-width: 780px; line-height: 1.75; }
 .contact-form { display: grid; gap: 14px; }
 .contact-form label { display: grid; gap: 8px; font-weight: 800; text-transform: uppercase; font-size: 12px; }
+.signup-page { display: grid; grid-template-columns: .86fr 1fr; gap: clamp(28px, 7vw, 110px); align-items: start; }
+.signup-page__intro { position: sticky; top: calc(var(--tls-header) + 28px); display: grid; gap: 18px; }
+.signup-page__intro h1 { margin: 0; max-width: 8ch; text-transform: uppercase; font-size: clamp(52px, 8vw, 128px); line-height: .82; }
+.signup-page__intro > p:not(.eyebrow) { max-width: 46ch; line-height: 1.7; color: var(--tls-muted); }
+.signup-page__note { display: grid; gap: 6px; padding-top: 18px; border-top: 1px solid var(--tls-line); max-width: 440px; }
+.signup-page__note strong { text-transform: uppercase; font-size: 12px; }
+.signup-page__note span { color: var(--tls-muted); line-height: 1.5; }
+.signup-page__form-wrap { padding: clamp(20px, 4vw, 42px); background: white; border: 1px solid var(--tls-line); }
+.signup-form { display: grid; gap: 16px; }
+.signup-form label { display: grid; gap: 8px; font-weight: 800; text-transform: uppercase; font-size: 12px; }
+.signup-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.signup-form__consent { display: flex !important; grid-template-columns: none; align-items: flex-start; gap: 10px; font-weight: 600 !important; text-transform: none !important; line-height: 1.5; }
+.signup-form__consent input { width: 18px; height: 18px; min-height: 18px; margin: 0; flex: 0 0 auto; accent-color: var(--tls-red); }
+.signup-form__fineprint { margin: 0; color: var(--tls-muted); font-size: 11px; line-height: 1.5; }
+.form-success { display: grid; gap: 5px; padding: 14px; border: 1px solid var(--tls-red); color: var(--tls-ink); }
+.form-success strong { text-transform: uppercase; }
+.form-success span { color: var(--tls-muted); }
 .search-page__form { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 24px; max-width: 860px; }
 .search-page__count { margin: 0 0 20px; color: var(--tls-muted); }
 .search-result, .empty-state {
@@ -362,10 +379,11 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
   .site-nav { display: none; }
   .trend-shortcuts__grid, .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .category-grid, .brand-story__tiles { grid-template-columns: repeat(2, 1fr); }
-  .mission-band, .product-page, .collection-page__header, .contact-page { grid-template-columns: 1fr; }
+  .mission-band, .product-page, .collection-page__header, .contact-page, .signup-page { grid-template-columns: 1fr; }
   .editorial-campaign { grid-template-columns: 1fr; }
   .editorial-campaign__media { min-height: 54svh; }
   .product-page__summary { position: static; }
+  .signup-page__intro { position: static; }
   .mobile-atc { display: block; }
 }
 @media (max-width: 900px) {
@@ -421,6 +439,7 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
   .collection-toolbar { align-items: stretch; flex-direction: column; }
   .newsletter form { flex-direction: column; }
   .newsletter input { width: 100%; min-width: 0; }
+  .signup-form__grid { grid-template-columns: 1fr; }
   .product-page { padding-bottom: 92px; }
   .product-page__gallery img { aspect-ratio: 4/5; }
   .cart-drawer__panel { width: min(420px, 100vw); padding: 16px; }

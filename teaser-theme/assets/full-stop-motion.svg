@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="THELIVINGSTOP full stop">
+  <title>THELIVINGSTOP full stop</title>
+  <circle cx="60" cy="60" r="39" fill="#BF0404">
+    <animate attributeName="r" values="39;44;39" dur="1.7s" repeatCount="indefinite" calcMode="spline" keySplines=".25 1 .5 1;.25 1 .5 1"/>
+  </circle>
+  <circle cx="60" cy="60" r="47" fill="none" stroke="#050505" stroke-width="2" stroke-dasharray="8 10">
+    <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="4.8s" repeatCount="indefinite"/>
+  </circle>
+  <path d="M60 10v12M60 98v12M10 60h12M98 60h12" stroke="#050505" stroke-width="2" stroke-linecap="round" opacity=".7">
+    <animate attributeName="opacity" values=".35;1;.35" dur="1.7s" repeatCount="indefinite"/>
+  </path>
+</svg>
