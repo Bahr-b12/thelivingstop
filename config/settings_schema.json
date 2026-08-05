@@ -15,12 +15,5 @@
       { "type": "color", "id": "brand_black", "label": "Brand black", "default": "#050505" },
       { "type": "color", "id": "brand_white", "label": "Crisp white", "default": "#FAFAF7" }
     ]
-  },
-  {
-    "name": "Full-stop animations",
-    "settings": [
-      { "type": "checkbox", "id": "enable_full_stop_animation", "label": "Enable brand impact message", "default": true },
-      { "type": "text", "id": "impact_quote", "label": "Impact message", "default": "Every piece helps fund food, shelter, and care.", "info": "A short message that types in and erases near the bottom of the storefront." }
-    ]
   }
 ]

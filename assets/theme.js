@@ -182,53 +182,5 @@
     window.setTimeout(hide, 2200);
   }
 
-  function setupImpactQuote() {
-    const layer = qs('[data-impact-quote]');
-    if (!layer) return;
-    const textNode = qs('[data-impact-quote-text]', layer);
-    const primary = layer.dataset.impactQuotePrimary || 'Every piece helps fund food, shelter, and care.';
-    const quotes = [primary, 'Wear well. Give back.'];
-    const placeQuote = () => {
-      const mobile = window.innerWidth <= 680;
-      const left = mobile
-        ? (Math.random() < 0.5 ? 38 + Math.random() * 6 : 56 + Math.random() * 6)
-        : (Math.random() < 0.5 ? 36 + Math.random() * 6 : 58 + Math.random() * 6);
-      const top = mobile
-        ? (Math.random() < 0.5 ? 22 + Math.random() * 10 : 58 + Math.random() * 10)
-        : (Math.random() < 0.5 ? 18 + Math.random() * 18 : 63 + Math.random() * 17);
-      layer.style.setProperty('--impact-x', `${left}%`);
-      layer.style.setProperty('--impact-y', `${top}%`);
-    };
-    placeQuote();
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      textNode.textContent = primary;
-      return;
-    }
-    let quoteIndex = 0;
-    let characterIndex = 0;
-    let deleting = false;
-    const tick = () => {
-      const quote = quotes[quoteIndex];
-      textNode.textContent = quote.slice(0, characterIndex);
-      if (!deleting && characterIndex < quote.length) {
-        characterIndex += 1;
-        window.setTimeout(tick, 28);
-      } else if (!deleting) {
-        deleting = true;
-        window.setTimeout(tick, 1600 + Math.random() * 2200);
-      } else if (characterIndex > 0) {
-        characterIndex -= 1;
-        window.setTimeout(tick, 16);
-      } else {
-        deleting = false;
-        quoteIndex = (quoteIndex + 1) % quotes.length;
-        placeQuote();
-        window.setTimeout(tick, 500 + Math.random() * 1200);
-      }
-    };
-    window.setTimeout(tick, 500 + Math.random() * 1400);
-  }
-
   setupPageLoader();
-  setupImpactQuote();
 })();
