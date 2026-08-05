@@ -14,7 +14,10 @@
       {% if section.settings.hero_logo != blank %}
         {{ section.settings.hero_logo | image_url: width: 1400 | image_tag: widths: '480,720,1000,1400', sizes: '(min-width: 900px) 42vw, 78vw', class: 'hero__brand-image', alt: section.settings.heading, loading: 'eager' }}
       {% else %}
-        <img src="{{ 'hero-logo.png' | asset_url }}" class="hero__brand-image" width="1845" height="1150" alt="{{ section.settings.heading | escape }}" loading="eager">
+        <picture>
+          <source media="(max-width: 680px)" srcset="{{ 'hero-logo-mobile.png' | asset_url }}">
+          <img src="{{ 'hero-logo.png' | asset_url }}" class="hero__brand-image" width="1845" height="1150" alt="{{ section.settings.heading | escape }}" loading="eager">
+        </picture>
       {% endif %}
     </h1>
     <p>{{ section.settings.subheading }}</p>
