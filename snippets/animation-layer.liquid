@@ -1,12 +1,7 @@
 {% if settings.enable_full_stop_animation %}
-  <div
-    class="full-stop-layer"
-    data-full-stop-layer
-    data-min="{{ settings.animation_min_interval | default: 4 }}"
-    data-max="{{ settings.animation_max_interval | default: 12 }}"
-    data-size="{{ settings.animation_max_size | default: 88 }}"
-    data-pages="{{ settings.animation_allowed_pages | escape }}"
-    aria-hidden="true">
-    <span class="visually-hidden">Signature motion accent</span>
+  <div class="impact-quote" data-impact-quote data-impact-quote-primary="{{ settings.impact_quote | default: 'Every piece helps fund food, shelter, and care.' | escape }}">
+    <span class="impact-quote__dot" aria-hidden="true"></span>
+    <span class="impact-quote__text" data-impact-quote-text aria-hidden="true"></span><span class="impact-quote__caret" aria-hidden="true"></span>
+    <span class="visually-hidden">Every piece helps fund food, shelter, and care.</span>
   </div>
 {% endif %}

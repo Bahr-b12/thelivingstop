@@ -182,62 +182,40 @@
     window.setTimeout(hide, 2200);
   }
 
-  function setupFullStopLayer() {
-    const layer = qs('[data-full-stop-layer]');
-    if (!layer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const page = document.body.className.replace('template-', '').split(/\s+/)[0];
-    const allowed = (layer.dataset.pages || '').split(',').map((item) => item.trim()).filter(Boolean);
-    if (allowed.length && !allowed.includes(page)) return;
-    const assets = [
-      { type: 'image', src: assetUrl('full-stop-motion.svg') },
-      { type: 'image', src: assetUrl('full-stop-motion.svg') }
-    ];
-    const min = Number(layer.dataset.min || 4) * 1000;
-    const max = Number(layer.dataset.max || 12) * 1000;
-    const maxSize = Number(layer.dataset.size || 56);
-    const reduced = /product|cart/.test(page) ? 1.8 : 1;
-
-    function assetUrl(filename) {
-      const probe = qs(`link[href*="theme.css"]`)?.href || '';
-      return probe.replace(/theme\.css.*/, filename);
+  function setupImpactQuote() {
+    const layer = qs('[data-impact-quote]');
+    if (!layer) return;
+    const textNode = qs('[data-impact-quote-text]', layer);
+    const primary = layer.dataset.impactQuotePrimary || 'Every piece helps fund food, shelter, and care.';
+    const quotes = [primary, 'Wear well. Give back.'];
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      textNode.textContent = primary;
+      return;
     }
-
-    function blockedZone(x, y) {
-      return y < 110 || y > window.innerHeight - 120 || x > window.innerWidth - 180 && y < 180;
-    }
-
-    function spawn() {
-      const pick = assets[Math.floor(Math.random() * assets.length)];
-      const size = Math.max(18, Math.min(maxSize, window.innerWidth * 0.11) * (0.55 + Math.random() * 0.45));
-      let x = Math.random() * (window.innerWidth - size);
-      let y = Math.random() * (window.innerHeight - size);
-      for (let i = 0; i < 6 && blockedZone(x, y); i += 1) {
-        x = Math.random() * (window.innerWidth - size);
-        y = Math.random() * (window.innerHeight - size);
+    let quoteIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+    const tick = () => {
+      const quote = quotes[quoteIndex];
+      textNode.textContent = quote.slice(0, characterIndex);
+      if (!deleting && characterIndex < quote.length) {
+        characterIndex += 1;
+        window.setTimeout(tick, 28);
+      } else if (!deleting) {
+        deleting = true;
+        window.setTimeout(tick, 2200);
+      } else if (characterIndex > 0) {
+        characterIndex -= 1;
+        window.setTimeout(tick, 16);
+      } else {
+        deleting = false;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        window.setTimeout(tick, 260);
       }
-      const node = document.createElement('span');
-      node.className = 'full-stop-pop';
-      node.style.left = `${x}px`;
-      node.style.top = `${y}px`;
-      node.style.width = `${size}px`;
-      node.style.height = `${size}px`;
-      node.style.animationDuration = `${500 + Math.random() * 900}ms`;
-      const img = document.createElement('img');
-      img.alt = '';
-      img.src = pick.src;
-      node.appendChild(img);
-      layer.appendChild(node);
-      setTimeout(() => node.remove(), 1500);
-      schedule();
-    }
-
-    function schedule() {
-      const delay = (min + Math.random() * Math.max(1000, max - min)) * reduced;
-      window.setTimeout(spawn, delay);
-    }
-    schedule();
+    };
+    tick();
   }
 
   setupPageLoader();
-  setupFullStopLayer();
+  setupImpactQuote();
 })();
