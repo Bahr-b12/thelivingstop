@@ -1,7 +1,39 @@
 {% liquid
   assign card_product = product
-  assign fallback_image = fallback | default: 'product-concrete-1.jpg'
   assign media = card_product.featured_media
+  assign fallback_prefix = blank
+  case card_product.handle
+    when 'life-period-tee-black'
+      assign fallback_prefix = 'black-tee-male'
+    when 'basic-black-tee-female'
+      assign fallback_prefix = 'black-tee-female'
+    when 'life-period-tee-white'
+      assign fallback_prefix = 'white-tee-male'
+    when 'basic-white-tee-female'
+      assign fallback_prefix = 'white-tee-female'
+    when 'concrete-gray-tee-male'
+      assign fallback_prefix = 'gray-tee-male'
+    when 'concrete-gray-tee-female'
+      assign fallback_prefix = 'gray-tee-female'
+    when 'babyblue-tee-male'
+      assign fallback_prefix = 'babyblue-tee-male'
+    when 'babyblue-tee-female'
+      assign fallback_prefix = 'babyblue-tee-female'
+    when 'black-polo-unisex'
+      assign fallback_prefix = 'black-polo-unisex'
+    when 'gray-polo-female'
+      assign fallback_prefix = 'gray-polo-female'
+    when 'matching-living-fit'
+      assign fallback_prefix = 'matching-fit'
+    when 'white-basic-unisex'
+      assign fallback_prefix = 'white-basic-unisex'
+    when 'stitches-handmade-detail'
+      assign fallback_prefix = 'stitches-handmade'
+  endcase
+  assign fallback_image = fallback | default: 'product-concrete-1.jpg'
+  if fallback_prefix != blank
+    assign fallback_image = fallback_prefix | append: '-1.jpg'
+  endif
 %}
 <article class="product-card">
   <a class="product-card__media" href="{{ card_product.url | default: routes.all_products_collection_url }}" aria-label="{{ card_product.title | escape }}">
@@ -12,6 +44,9 @@
       {% endif %}
     {% else %}
       <img src="{{ fallback_image | asset_url }}" alt="{{ card_product.title | default: 'THELIVINGSTOP product' | escape }}" loading="{{ loading | default: 'lazy' }}">
+      {% if fallback_prefix != blank %}
+        <img src="{{ fallback_prefix | append: '-2.jpg' | asset_url }}" alt="{{ card_product.title | default: 'THELIVINGSTOP product' | escape }} alternate view" loading="lazy" class="product-card__hover">
+      {% endif %}
     {% endif %}
     {% render 'red-circle', class: 'product-card__mission' %}
   </a>
