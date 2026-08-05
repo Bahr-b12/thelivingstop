@@ -7,8 +7,14 @@
     <form action="{{ routes.cart_url }}" method="post" class="cart-page__form">
       {% for item in cart.items %}
         <div class="cart-item">
-          <a href="{{ item.url }}" class="cart-item__image">{{ item.image | image_url: width: 220 | image_tag: alt: item.product.title, loading: 'lazy' }}</a>
-          <div class="cart-item__content"><a href="{{ item.url }}">{{ item.product.title }}</a><span>{{ item.variant.title }}</span><input type="number" name="updates[]" value="{{ item.quantity }}" min="0"></div>
+          <a href="{{ item.url }}" class="cart-item__image">
+            {% if item.image %}
+              {{ item.image | image_url: width: 220 | image_tag: alt: item.product.title, loading: 'lazy' }}
+            {% else %}
+              <img src="{{ 'logo-mark.png' | asset_url }}" alt="{{ item.product.title | escape }}" loading="lazy">
+            {% endif %}
+          </a>
+          <div class="cart-item__content"><a href="{{ item.url }}">{{ item.product.title }}</a><span>{{ item.variant.title }}</span><label class="visually-hidden" for="CartQty-{{ forloop.index }}">Quantity for {{ item.product.title }}</label><input id="CartQty-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0"></div>
           <strong>{{ item.final_line_price | money }}</strong>
         </div>
       {% endfor %}

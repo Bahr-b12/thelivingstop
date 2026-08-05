@@ -1,4 +1,4 @@
-<aside class="cart-drawer" id="CartDrawer" aria-hidden="true">
+<aside class="cart-drawer" id="CartDrawer" aria-hidden="true" data-cart-drawer>
   <div class="cart-drawer__overlay" data-cart-close></div>
   <div class="cart-drawer__panel" role="dialog" aria-modal="true" aria-label="Shopping cart">
     <header class="cart-drawer__header">
@@ -17,7 +17,11 @@
         {% for item in cart.items %}
           <div class="cart-item" data-line="{{ forloop.index }}">
             <a href="{{ item.url }}" class="cart-item__image">
-              {{ item.image | image_url: width: 180 | image_tag: widths: '90,140,180', alt: item.product.title, loading: 'lazy' }}
+              {% if item.image %}
+                {{ item.image | image_url: width: 180 | image_tag: widths: '90,140,180', alt: item.product.title, loading: 'lazy' }}
+              {% else %}
+                <img src="{{ 'logo-mark.png' | asset_url }}" alt="{{ item.product.title | escape }}" loading="lazy">
+              {% endif %}
             </a>
             <div class="cart-item__content">
               <a href="{{ item.url }}">{{ item.product.title }}</a>
@@ -35,6 +39,7 @@
       {% endif %}
     </div>
     <footer class="cart-drawer__footer">
+      <p class="cart-drawer__status" data-cart-status role="status" aria-live="polite"></p>
       <p>A full stop on fast fashion. A step toward Living Kits.</p>
       <div class="cart-drawer__subtotal">
         <span>Subtotal</span>

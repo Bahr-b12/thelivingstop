@@ -7,29 +7,69 @@
     panel.classList.toggle('is-open', open);
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     document.documentElement.classList.toggle('drawer-open', open);
+    qsa(`[aria-controls="${panel.id}"]`).forEach((trigger) => trigger.setAttribute('aria-expanded', String(open)));
+    if (open) {
+      const focusTarget = qs('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])', panel);
+      focusTarget?.focus({ preventScroll: true });
+    }
   }
 
-  qsa('[data-cart-open]').forEach((button) => button.addEventListener('click', () => setOpen(qs('#CartDrawer'), true)));
-  qsa('[data-cart-close]').forEach((button) => button.addEventListener('click', () => setOpen(qs('#CartDrawer'), false)));
-  qsa('[data-menu-open]').forEach((button) => button.addEventListener('click', () => setOpen(qs('#MobileMenu'), true)));
-  qsa('[data-menu-close]').forEach((button) => button.addEventListener('click', () => setOpen(qs('#MobileMenu'), false)));
+  async function refreshCartDrawer() {
+    const drawer = qs('[data-cart-drawer]');
+    if (!drawer || !window.themeRoutes?.cart_section_url) return;
+    const response = await fetch(window.themeRoutes.cart_section_url, { headers: { Accept: 'application/json' } });
+    if (!response.ok) throw new Error('Cart drawer refresh failed');
+    const payload = await response.json();
+    const html = payload['cart-drawer'];
+    if (!html) return;
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    const updated = qs('[data-cart-drawer]', parsed);
+    if (updated) drawer.replaceWith(updated);
+  }
 
-  qsa('[data-cart-qty], [data-cart-remove]').forEach((button) => {
-    button.addEventListener('click', async () => {
+  document.addEventListener('click', async (event) => {
+    const cartOpen = event.target.closest('[data-cart-open]');
+    if (cartOpen) {
+      event.preventDefault();
+      setOpen(qs('#CartDrawer'), true);
+      return;
+    }
+    if (event.target.closest('[data-cart-close]')) {
+      setOpen(qs('#CartDrawer'), false);
+      return;
+    }
+    if (event.target.closest('[data-menu-open]')) {
+      setOpen(qs('#MobileMenu'), true);
+      return;
+    }
+    if (event.target.closest('[data-menu-close]')) {
+      setOpen(qs('#MobileMenu'), false);
+      return;
+    }
+    const button = event.target.closest('[data-cart-qty], [data-cart-remove]');
+    if (button) {
       const item = button.closest('[data-line]');
       if (!item) return;
       const line = Number(item.dataset.line);
       const qtyNode = item.querySelector('.cart-item__controls span');
       const current = Number(qtyNode?.textContent || 1);
       const next = button.hasAttribute('data-cart-remove') ? 0 : Math.max(0, current + Number(button.dataset.cartQty || 0));
+      const status = qs('[data-cart-status]');
       button.disabled = true;
-      await fetch(window.themeRoutes.cart_change_url + '.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ line, quantity: next })
-      });
-      window.location.reload();
-    });
+      if (status) status.textContent = 'Updating cart';
+      try {
+        const response = await fetch(window.themeRoutes.cart_change_url + '.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ line, quantity: next })
+        });
+        if (!response.ok) throw new Error('Cart update failed');
+        window.location.reload();
+      } catch (error) {
+        if (status) status.textContent = 'Cart update failed. Please try again.';
+        button.disabled = false;
+      }
+    }
   });
 
   document.addEventListener('keydown', (event) => {
@@ -46,17 +86,19 @@
       button.disabled = true;
       button.textContent = 'Adding';
       try {
-        await fetch(window.themeRoutes.cart_add_url + '.js', {
+        const addResponse = await fetch(window.themeRoutes.cart_add_url + '.js', {
           method: 'POST',
           body: new FormData(form),
           headers: { Accept: 'application/json' }
         });
+        if (!addResponse.ok) throw new Error('Add to cart failed');
         const cart = await fetch(window.themeRoutes.cart_url + '.js').then((res) => res.json());
         qsa('[data-cart-count]').forEach((node) => { node.textContent = cart.item_count; });
+        await refreshCartDrawer();
         setOpen(qs('#CartDrawer'), true);
         button.textContent = 'Added';
       } catch (error) {
-        button.textContent = 'Try again';
+        button.textContent = 'Unavailable';
       } finally {
         setTimeout(() => {
           button.disabled = false;

@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
     <style>
       :root {
         --tls-red: {{ settings.brand_red | default: '#BF0404' }};
@@ -26,13 +27,13 @@
         --tls-white: {{ settings.brand_white | default: '#FAFAF7' }};
       }
     </style>
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       window.themeRoutes = {
         cart_add_url: '{{ routes.cart_add_url }}',
         cart_change_url: '{{ routes.cart_change_url }}',
         cart_url: '{{ routes.cart_url }}',
+        cart_section_url: '{{ routes.cart_url }}?sections=cart-drawer',
         predictive_search_url: '{{ routes.predictive_search_url }}'
       };
     </script>
@@ -44,7 +45,7 @@
       {{ content_for_layout }}
     </main>
     {% sections 'footer-group' %}
-    {% render 'cart-drawer' %}
+    {% section 'cart-drawer' %}
     {% render 'animation-layer' %}
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </body>

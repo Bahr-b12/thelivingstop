@@ -1,0 +1,15 @@
+<section class="not-found section-pad">
+  <div>
+    {% render 'red-circle' %}
+    <p class="eyebrow">404</p>
+    <h1>A hard stop.</h1>
+    <p>This page has moved, sold out, or never lived here. Keep going with the collection.</p>
+    <div class="hero__actions">
+      {% render 'button', label: 'Shop products', href: '/pages/products', style: 'primary' %}
+      {% render 'button', label: 'Go home', href: routes.root_url, style: 'secondary' %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Main 404"}
+{% endschema %}

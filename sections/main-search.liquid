@@ -1,0 +1,44 @@
+<section class="search-page section-pad">
+  <div class="section-heading">
+    <p class="eyebrow">Search</p>
+    <h1>Find your full stop.</h1>
+  </div>
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+    <label class="visually-hidden" for="SearchInput">Search products and pages</label>
+    <input id="SearchInput" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search THELIVINGSTOP" autocomplete="off">
+    <input type="hidden" name="type" value="product,page,article">
+    <button class="tls-button tls-button--primary" type="submit">Search</button>
+  </form>
+
+  {% if search.performed %}
+    <p class="search-page__count" role="status">{{ search.results_count }} result{% unless search.results_count == 1 %}s{% endunless %} for "{{ search.terms | escape }}"</p>
+    {% if search.results_count > 0 %}
+      <div class="product-grid">
+        {% paginate search.results by 24 %}
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% else %}
+              <article class="search-result">
+                <p class="eyebrow">{{ item.object_type }}</p>
+                <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
+                {% if item.content != blank %}<p>{{ item.content | strip_html | truncate: 160 }}</p>{% endif %}
+              </article>
+            {% endif %}
+          {% endfor %}
+          {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+        {% endpaginate %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        {% render 'red-circle' %}
+        <h2>No results yet.</h2>
+        <p>Try T-Shirts, Polo, Black, White, Matching, or New In.</p>
+        {% render 'button', label: 'Shop products', href: '/pages/products', style: 'primary' %}
+      </div>
+    {% endif %}
+  {% endif %}
+</section>
+{% schema %}
+{"name":"Main search"}
+{% endschema %}
