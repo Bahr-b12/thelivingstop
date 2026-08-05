@@ -149,7 +149,7 @@
     </div>
   </div>
 </section>
-<div class="mobile-atc"><button class="tls-button tls-button--primary" type="button" data-scroll-product-form>Add to cart</button></div>
+<div class="mobile-atc"><button class="tls-button tls-button--primary{% unless product.selected_or_first_available_variant.available %} is-disabled{% endunless %}" type="button" data-scroll-product-form {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button></div>
 {% schema %}
 {"name":"Main product"}
 {% endschema %}

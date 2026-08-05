@@ -16,14 +16,14 @@ Production-ready Shopify Online Store 2.0 theme for THELIVINGSTOP.
 - Section groups for sticky header and footer
 - Reusable snippets for logo, product cards, price, buttons, cart drawer, red-circle accent, and animation layer
 - `assets/theme.css` and `assets/theme.js`
-- Theme settings for brand colors, logo, and random full-stop animation controls
+- Theme settings for brand colors, logo, and signature SVG motion controls
 
 ## Assets
 
 Local brand assets have been copied into `assets` with Shopify-safe filenames:
 
 - Logos: `logo-white.png`, `logo-dark.png`, `logo-alt.png`, `logo-mark.png`
-- Animation: `animation.svg`, `animation-2.svg`, `animation.mp4`, `animation-2.mp4`
+- Signature motion: `full-stop-motion.svg`, a native animated SVG built for the red full-stop mark
 - Reels: `living-stop-reel-1.mp4` is packaged for upload size. The source folder also includes reels 2-5; upload them to Shopify Files or compress and add them to assets, then update the video filename settings in the theme editor.
 - Product/fallback imagery: `black-tee-male-1.jpg`, `white-tee-male-1.jpg`, `matching-outfits-1.jpg`, `product-concrete-1.jpg`, and related files
 - Materials: `material-1.jpg`, `material-2.jpg`, `material-3.jpg`

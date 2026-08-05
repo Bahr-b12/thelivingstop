@@ -4,11 +4,9 @@
     data-full-stop-layer
     data-min="{{ settings.animation_min_interval | default: 4 }}"
     data-max="{{ settings.animation_max_interval | default: 12 }}"
-    data-size="{{ settings.animation_max_size | default: 56 }}"
+    data-size="{{ settings.animation_max_size | default: 88 }}"
     data-pages="{{ settings.animation_allowed_pages | escape }}"
     aria-hidden="true">
-    <template data-animation-template>
-      <span class="full-stop-pop"></span>
-    </template>
+    <span class="visually-hidden">Signature motion accent</span>
   </div>
 {% endif %}

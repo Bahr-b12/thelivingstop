@@ -129,6 +129,7 @@
     }
     const idInput = qs('input[name="id"]', form);
     const submit = qs('button[type="submit"]', form);
+    const mobileSubmit = qs('[data-scroll-product-form]');
     form.addEventListener('change', () => {
       const selected = [1, 2, 3].map((position) => qs(`[data-option-position="${position}"]:checked`, form)?.value).filter(Boolean);
       const match = variants.find((variant) => selected.every((value, index) => variant.options[index] === value));
@@ -138,8 +139,21 @@
         submit.disabled = !match.available;
         submit.textContent = match.available ? 'Add to cart' : 'Sold out';
       }
+      if (mobileSubmit) {
+        mobileSubmit.disabled = !match.available;
+        mobileSubmit.classList.toggle('is-disabled', !match.available);
+        mobileSubmit.textContent = match.available ? 'Add to cart' : 'Sold out';
+      }
     });
   });
+
+  function setupPageLoader() {
+    const loader = qs('[data-page-loader]');
+    if (!loader) return;
+    const hide = () => loader.classList.add('is-hidden');
+    window.addEventListener('load', hide, { once: true });
+    window.setTimeout(hide, 2200);
+  }
 
   function setupFullStopLayer() {
     const layer = qs('[data-full-stop-layer]');
@@ -148,10 +162,8 @@
     const allowed = (layer.dataset.pages || '').split(',').map((item) => item.trim()).filter(Boolean);
     if (allowed.length && !allowed.includes(page)) return;
     const assets = [
-      { type: 'image', src: assetUrl('animation.svg') },
-      { type: 'image', src: assetUrl('animation-2.svg') },
-      { type: 'video', src: assetUrl('animation.mp4') },
-      { type: 'video', src: assetUrl('animation-2.mp4') }
+      { type: 'image', src: assetUrl('full-stop-motion.svg') },
+      { type: 'image', src: assetUrl('full-stop-motion.svg') }
     ];
     const min = Number(layer.dataset.min || 4) * 1000;
     const max = Number(layer.dataset.max || 12) * 1000;
@@ -183,19 +195,10 @@
       node.style.width = `${size}px`;
       node.style.height = `${size}px`;
       node.style.animationDuration = `${500 + Math.random() * 900}ms`;
-      if (pick.type === 'image') {
-        const img = document.createElement('img');
-        img.alt = '';
-        img.src = pick.src;
-        node.appendChild(img);
-      } else {
-        const video = document.createElement('video');
-        video.src = pick.src;
-        video.muted = true;
-        video.playsInline = true;
-        video.autoplay = true;
-        node.appendChild(video);
-      }
+      const img = document.createElement('img');
+      img.alt = '';
+      img.src = pick.src;
+      node.appendChild(img);
       layer.appendChild(node);
       setTimeout(() => node.remove(), 1500);
       schedule();
@@ -208,5 +211,6 @@
     schedule();
   }
 
+  setupPageLoader();
   setupFullStopLayer();
 })();
