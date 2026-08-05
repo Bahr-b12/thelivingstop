@@ -1,7 +1,7 @@
 <section class="search-page section-pad">
   <div class="section-heading">
     <p class="eyebrow">Search</p>
-    <h1>Find your full stop.</h1>
+    <h1>Search.</h1>
   </div>
   <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
     <label class="visually-hidden" for="SearchInput">Search products and pages</label>
@@ -33,7 +33,7 @@
       <div class="empty-state">
         {% render 'red-circle' %}
         <h2>No results yet.</h2>
-        <p>Try T-Shirts, Polo, Black, White, Matching, or New In.</p>
+        <p>Try T-Shirts, Polo, Black, White, or New In.</p>
         {% render 'button', label: 'Shop products', href: '/pages/products', style: 'primary' %}
       </div>
     {% endif %}

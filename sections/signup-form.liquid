@@ -1,14 +1,14 @@
 <section class="signup-page section-pad">
   <div class="signup-page__intro">
-    <p class="eyebrow">Early access / 10% launch welcome</p>
-    <h1>Be first to live the period.</h1>
-    <p>Leave the details below and we will keep you close to the first drop, sizing help, care guidance, and early access. Shipping and payment details are collected securely at Shopify checkout when you order.</p>
-    <div class="signup-page__note"><strong>What you receive</strong><span>Launch access, a 10% welcome code, and direct customer care from THELIVINGSTOP.</span></div>
+    <p class="eyebrow">Early access / 10% off</p>
+    <h1>Be first in.</h1>
+    <p>Join the list for launch access and sizing help. Checkout collects delivery and payment details when you order.</p>
+    <div class="signup-page__note"><strong>You receive</strong><span>Launch access and 10% off.</span></div>
   </div>
   <div class="signup-page__form-wrap">
     {% form 'contact', class: 'signup-form' %}
       {% if form.posted_successfully? %}
-        <div class="form-success" role="status"><strong>You are on the list.</strong><span>We will be in touch with early access and your 10% launch welcome.</span></div>
+        <div class="form-success" role="status"><strong>You are on the list.</strong><span>We will send your 10% welcome.</span></div>
       {% endif %}
       {{ form.errors | default_errors }}
       <input type="hidden" name="contact[request_type]" value="Launch signup / early access">

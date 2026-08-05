@@ -3,7 +3,7 @@
     "hero": { "type": "hero" },
     "trends": {
       "type": "trend-shortcuts",
-      "settings": { "heading": "Fast paths to living pieces." },
+      "settings": { "heading": "Shop the edit." },
       "blocks": {
         "new-in": { "type": "shortcut", "settings": { "title": "New In", "link": "/collections/new-in", "asset_name": "matching-outfits-1.jpg" } },
         "t-shirts": { "type": "shortcut", "settings": { "title": "T-Shirts", "link": "/collections/t-shirts", "asset_name": "white-tee-male-1.jpg" } },
@@ -14,12 +14,12 @@
     },
     "showcase": {
       "type": "product-showcase",
-      "settings": { "kicker": "New in", "heading": "Every piece carries the red full stop.", "limit": 4, "button_label": "Shop new in", "button_link": "/collections/new-in" }
+      "settings": { "kicker": "New in", "heading": "Made to move.", "limit": 4, "button_label": "Shop new in", "button_link": "/collections/new-in" }
     },
     "campaign": { "type": "editorial-campaign" },
     "categories": {
       "type": "featured-collections",
-      "settings": { "heading": "Premium streetwear built to move." },
+      "settings": { "heading": "Streetwear, simplified." },
       "blocks": {
         "t-shirts": { "type": "collection", "settings": { "title": "T-Shirts", "note": "Heavy cotton. Everyday motion.", "link": "/collections/t-shirts", "asset_name": "white-tee-male-1.jpg" } },
         "hoodies": { "type": "collection", "settings": { "title": "Hoodies", "note": "Weight, warmth, full-stop detail.", "link": "/collections/hoodies", "asset_name": "product-concrete-1.jpg" } },

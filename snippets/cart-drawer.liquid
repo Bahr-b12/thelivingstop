@@ -4,7 +4,7 @@
     <header class="cart-drawer__header">
       <div>
         <p class="eyebrow">Your cart</p>
-        <h2>Living pieces</h2>
+        <h2>Your cart</h2>
       </div>
       <button class="icon-button" type="button" data-cart-close aria-label="Close cart">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -12,7 +12,7 @@
     </header>
     <div class="cart-drawer__items" data-cart-items>
       {% if cart.item_count == 0 %}
-        <p class="cart-drawer__empty">Your cart is ready for the first full stop.</p>
+        <p class="cart-drawer__empty">Your cart is empty.</p>
       {% else %}
         {% for item in cart.items %}
           {% liquid
@@ -64,7 +64,7 @@
     </div>
     <footer class="cart-drawer__footer">
       <p class="cart-drawer__status" data-cart-status role="status" aria-live="polite"></p>
-      <p>A full stop on fast fashion. A step toward Living Kits.</p>
+      <p>Wear well. Give back.</p>
       <div class="cart-drawer__subtotal">
         <span>Subtotal</span>
         <strong>{{ cart.total_price | money }}</strong>
