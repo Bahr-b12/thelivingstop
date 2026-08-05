@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "contact": { "type": "contact-form" },
+    "mission": { "type": "mission-band" }
+  },
+  "order": ["contact", "mission"]
+}

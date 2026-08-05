@@ -1,0 +1,44 @@
+<section class="collection-page section-pad">
+  <div class="collection-page__header">
+    <div><p class="eyebrow">Collection</p><h1>{{ collection.title | default: 'Shop all' }}</h1></div>
+    {% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}
+  </div>
+  <form class="collection-toolbar" id="CollectionFilters">
+    <details>
+      <summary>Filters</summary>
+      <div class="filter-panel">
+        {% for filter in collection.filters %}
+          <fieldset>
+            <legend>{{ filter.label }}</legend>
+            {% for value in filter.values %}
+              <label><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %}> {{ value.label }} <small>{{ value.count }}</small></label>
+            {% endfor %}
+          </fieldset>
+        {% else %}
+          <fieldset><legend>Size</legend><label><input type="checkbox"> XS</label><label><input type="checkbox"> S</label><label><input type="checkbox"> M</label><label><input type="checkbox"> L</label><label><input type="checkbox"> XL</label></fieldset>
+          <fieldset><legend>Type</legend><label><input type="checkbox"> T-Shirts</label><label><input type="checkbox"> Hoodies</label><label><input type="checkbox"> Denim</label><label><input type="checkbox"> Polos</label></fieldset>
+        {% endfor %}
+      </div>
+    </details>
+    <label>Sort
+      <select name="sort_by">
+        {% for option in collection.sort_options %}
+          <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </form>
+  <div class="product-grid">
+    {% paginate collection.products by 24 %}
+      {% for product in collection.products %}
+        {% render 'product-card', product: product %}
+      {% else %}
+        {% render 'demo-products-grid', limit: 24 %}
+      {% endfor %}
+      {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+{% schema %}
+{"name":"Main collection"}
+{% endschema %}

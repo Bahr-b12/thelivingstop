@@ -1,0 +1,13 @@
+<section class="shop-colour section-pad">
+  <div class="section-heading"><p class="eyebrow">Shop by colour</p><h2>Every product in your favourite shade.</h2></div>
+  <div class="colour-row">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}" class="colour-chip" {{ block.shopify_attributes }}>
+        <span style="background:{{ block.settings.color }}"></span>{{ block.settings.title }}
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Shop by colour","blocks":[{"type":"colour","name":"Colour","settings":[{"type":"text","id":"title","label":"Title","default":"Pitch Black"},{"type":"color","id":"color","label":"Swatch","default":"#050505"},{"type":"url","id":"link","label":"Link"}]}],"presets":[{"name":"Shop by colour","blocks":[{"type":"colour","settings":{"title":"Pitch Black","color":"#050505"}},{"type":"colour","settings":{"title":"Crisp White","color":"#f7f4ef"}},{"type":"colour","settings":{"title":"Concrete Grey","color":"#9b9b94"}},{"type":"colour","settings":{"title":"Baby Blue","color":"#a7b9d9"}},{"type":"colour","settings":{"title":"Full Stop Red","color":"#BF0404"}}]}]}
+{% endschema %}

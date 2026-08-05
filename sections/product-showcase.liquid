@@ -1,0 +1,18 @@
+<section class="product-showcase section-pad">
+  <div class="section-heading section-heading--split">
+    <div><p class="eyebrow">{{ section.settings.kicker }}</p><h2>{{ section.settings.heading }}</h2></div>
+    {% render 'button', label: section.settings.button_label, href: section.settings.button_link, style: 'secondary' %}
+  </div>
+  <div class="product-grid">
+    {% if section.settings.collection != blank and section.settings.collection.products_count > 0 %}
+      {% for product in section.settings.collection.products limit: section.settings.limit %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {% else %}
+      {% render 'demo-products-grid', limit: section.settings.limit %}
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{"name":"Product showcase","settings":[{"type":"text","id":"kicker","label":"Kicker","default":"New in"},{"type":"text","id":"heading","label":"Heading","default":"Every piece carries the red full stop."},{"type":"collection","id":"collection","label":"Collection"},{"type":"range","id":"limit","label":"Products","min":4,"max":12,"step":4,"default":4},{"type":"url","id":"button_link","label":"Button link"},{"type":"text","id":"button_label","label":"Button label","default":"Shop new in"}],"presets":[{"name":"Product showcase"}]}
+{% endschema %}

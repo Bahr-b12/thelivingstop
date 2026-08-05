@@ -1,0 +1,24 @@
+<section class="products-index section-pad">
+  <div class="products-index__hero">
+    <div>
+      <p class="eyebrow">Products</p>
+      <h1>{{ section.settings.heading }}</h1>
+    </div>
+    <p>{{ section.settings.copy }}</p>
+  </div>
+  <div class="collection-toolbar collection-toolbar--static">
+    <div class="products-index__tabs" aria-label="Product categories">
+      <a href="/collections/t-shirts">T-Shirts</a>
+      <a href="/collections/polos">Polos</a>
+      <a href="/collections/matching-fits">Matching Fits</a>
+      <a href="/collections/new-in">New In</a>
+    </div>
+    <span>Size / Color / Type filters are active on Shopify collection pages.</span>
+  </div>
+  <div class="product-grid">
+    {% render 'demo-products-grid', limit: 24 %}
+  </div>
+</section>
+{% schema %}
+{"name":"Products index","settings":[{"type":"text","id":"heading","label":"Heading","default":"Shop the full stop collection."},{"type":"textarea","id":"copy","label":"Copy","default":"Premium ethical streetwear: tees, polos, matching fits, handmade details, and essentials built for movement."}],"presets":[{"name":"Products index"}]}
+{% endschema %}

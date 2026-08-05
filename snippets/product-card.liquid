@@ -1,0 +1,40 @@
+{% liquid
+  assign card_product = product
+  assign fallback_image = fallback | default: 'product-concrete-1.jpg'
+  assign media = card_product.featured_media
+%}
+<article class="product-card">
+  <a class="product-card__media" href="{{ card_product.url | default: routes.all_products_collection_url }}" aria-label="{{ card_product.title | escape }}">
+    {% if media %}
+      {{ media | image_url: width: 900 | image_tag: widths: '320,480,640,900', sizes: '(min-width: 990px) 25vw, 50vw', loading: loading | default: 'lazy', alt: card_product.title }}
+      {% if card_product.media[1] %}
+        {{ card_product.media[1] | image_url: width: 900 | image_tag: widths: '320,480,640,900', sizes: '(min-width: 990px) 25vw, 50vw', loading: 'lazy', class: 'product-card__hover', alt: card_product.title }}
+      {% endif %}
+    {% else %}
+      <img src="{{ fallback_image | asset_url }}" alt="{{ card_product.title | default: 'THELIVINGSTOP product' | escape }}" loading="{{ loading | default: 'lazy' }}">
+    {% endif %}
+    {% render 'red-circle', class: 'product-card__mission' %}
+  </a>
+  <div class="product-card__info">
+    <a href="{{ card_product.url | default: routes.all_products_collection_url }}" class="product-card__title">{{ card_product.title | default: title }}</a>
+    {% if card_product %}
+      {% render 'price', product: card_product %}
+    {% else %}
+      <div class="price"><span>{{ price | default: '$68.00' }}</span></div>
+    {% endif %}
+    <div class="product-card__meta">
+      <span>{{ meta | default: 'Unisex fit' }}</span>
+      <span class="swatches" aria-label="Available colours"><i style="background:#050505"></i><i style="background:#f5f2ec"></i><i style="background:#a7b9d9"></i></span>
+    </div>
+    {% if card_product.available %}
+      <form method="post" action="{{ routes.cart_add_url }}" class="quick-add">
+        <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+        <button type="submit">Quick add</button>
+      </form>
+    {% elsif card_product %}
+      <button class="quick-add__sold" type="button" disabled>Sold out</button>
+    {% else %}
+      <a class="quick-add__sold" href="{{ routes.all_products_collection_url }}">Shop now</a>
+    {% endif %}
+  </div>
+</article>

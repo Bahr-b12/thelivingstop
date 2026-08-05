@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": { "type": "main-collection" },
+    "mission": { "type": "mission-band" },
+    "community": { "type": "community-grid" }
+  },
+  "order": ["main", "mission", "community"]
+}

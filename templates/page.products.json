@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "products": { "type": "product-index" },
+    "mission": { "type": "mission-band" }
+  },
+  "order": ["products", "mission"]
+}

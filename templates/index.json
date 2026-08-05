@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "trends": { "type": "trend-shortcuts" },
+    "showcase": { "type": "product-showcase" },
+    "campaign": { "type": "editorial-campaign" },
+    "categories": { "type": "featured-collections" },
+    "colours": { "type": "shop-by-colour" },
+    "mission": { "type": "mission-band" },
+    "community": { "type": "community-grid" }
+  },
+  "order": ["hero", "trends", "showcase", "campaign", "categories", "colours", "mission", "community"]
+}

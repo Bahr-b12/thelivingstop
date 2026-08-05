@@ -1,0 +1,14 @@
+{% if settings.enable_full_stop_animation %}
+  <div
+    class="full-stop-layer"
+    data-full-stop-layer
+    data-min="{{ settings.animation_min_interval | default: 4 }}"
+    data-max="{{ settings.animation_max_interval | default: 12 }}"
+    data-size="{{ settings.animation_max_size | default: 56 }}"
+    data-pages="{{ settings.animation_allowed_pages | escape }}"
+    aria-hidden="true">
+    <template data-animation-template>
+      <span class="full-stop-pop"></span>
+    </template>
+  </div>
+{% endif %}

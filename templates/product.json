@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": { "type": "main-product" },
+    "related": { "type": "product-showcase", "settings": { "kicker": "Related", "heading": "Keep the full stop moving.", "limit": 4 } },
+    "mission": { "type": "mission-band" }
+  },
+  "order": ["main", "related", "mission"]
+}

@@ -1,0 +1,14 @@
+<section class="editorial-campaign">
+  <div class="editorial-campaign__media">
+    <video autoplay muted loop playsinline poster="{{ 'matching-outfits-2.jpg' | asset_url }}"><source src="{{ section.settings.asset_video | default: 'living-stop-reel-1.mp4' | asset_url }}" type="video/mp4"></video>
+  </div>
+  <div class="editorial-campaign__copy">
+    <p class="eyebrow">Alive and In</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.copy }}</p>
+    {% render 'button', label: section.settings.button_label, href: section.settings.button_link, style: 'light' %}
+  </div>
+</section>
+{% schema %}
+{"name":"Editorial campaign","settings":[{"type":"text","id":"heading","label":"Heading","default":"Made for movement, community, sun, and real life."},{"type":"textarea","id":"copy","label":"Copy","default":"Premium pieces built to move, last, and mean something. No guilt. No landfill pace. Just sharper living."},{"type":"text","id":"asset_video","label":"Asset video filename","default":"living-stop-reel-1.mp4"},{"type":"url","id":"button_link","label":"Button link"},{"type":"text","id":"button_label","label":"Button label","default":"Learn more"}],"presets":[{"name":"Editorial campaign"}]}
+{% endschema %}

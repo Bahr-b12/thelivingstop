@@ -1,0 +1,28 @@
+{% liquid
+  assign fields = item | split: '|'
+  assign demo_handle = fields[0]
+  assign demo_title = fields[1]
+  assign demo_price = fields[2]
+  assign demo_prefix = fields[3]
+  assign demo_type = fields[4]
+  assign demo_color = fields[5]
+  assign demo_fit = fields[6]
+  assign demo_image = demo_prefix | append: '-1.jpg'
+  assign demo_hover = demo_prefix | append: '-2.jpg'
+%}
+<article class="product-card">
+  <a class="product-card__media" href="/products/{{ demo_handle }}" aria-label="{{ demo_title | escape }}">
+    <img src="{{ demo_image | asset_url }}" alt="{{ demo_title | escape }}" loading="lazy">
+    <img src="{{ demo_hover | asset_url }}" alt="{{ demo_title | escape }} alternate view" loading="lazy" class="product-card__hover">
+    {% render 'red-circle', class: 'product-card__mission' %}
+  </a>
+  <div class="product-card__info">
+    <a href="/products/{{ demo_handle }}" class="product-card__title">{{ demo_title }}</a>
+    <div class="price"><span>{{ demo_price }}</span></div>
+    <div class="product-card__meta">
+      <span>{{ demo_fit }}</span>
+      <span>{{ demo_color }}</span>
+    </div>
+    <a class="quick-add__sold" href="/products/{{ demo_handle }}">View product</a>
+  </div>
+</article>

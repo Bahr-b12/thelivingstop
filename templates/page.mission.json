@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "story": { "type": "brand-story", "settings": { "kicker": "Learn to Live All Together", "heading": "A brighter way to build a fashion brand.", "copy": "The mission is optimistic: children, animals, workers, and communities sharing better systems. No pity language. No exploitative imagery. Just a full stop on what should end." } },
+    "mission": { "type": "mission-band" },
+    "campaign": { "type": "editorial-campaign", "settings": { "heading": "A full stop on child labor. A full stop on landfill fashion.", "copy": "Living Kits support food, shelter, education, and sanctuary resources for orphan children and orphan animals. The product standard stays premium: durable fabrics, ethical production, and construction made to last." } }
+  },
+  "order": ["story", "mission", "campaign"]
+}

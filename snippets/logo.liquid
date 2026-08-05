@@ -1,0 +1,13 @@
+{% liquid
+  assign logo_asset = 'logo-white.png'
+  if tone == 'dark'
+    assign logo_asset = 'logo-dark.png'
+  endif
+%}
+<a class="site-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+  {% if settings.logo != blank %}
+    {{ settings.logo | image_url: width: 520 | image_tag: widths: '180,260,360,520', class: 'site-logo__image', alt: shop.name, loading: 'eager' }}
+  {% else %}
+    <img src="{{ logo_asset | asset_url }}" class="site-logo__image" width="260" height="73" alt="THELIVINGSTOP">
+  {% endif %}
+</a>

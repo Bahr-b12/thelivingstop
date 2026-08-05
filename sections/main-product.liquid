@@ -1,0 +1,153 @@
+{% liquid
+  assign fallback_prefix = 'black-tee-male'
+  assign fallback_count = 4
+  assign fallback_type = 'Premium streetwear'
+  assign fallback_color = 'Black'
+  assign fallback_fit = 'Unisex fit'
+  assign title_handle = product.title | handle
+  assign product_key = product.handle | default: title_handle
+  case product_key
+    when 'life-period-tee-black'
+      assign fallback_prefix = 'black-tee-male'
+      assign fallback_count = 7
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Unisex fit'
+    when 'basic-black-tee-female'
+      assign fallback_prefix = 'black-tee-female'
+      assign fallback_count = 8
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Female fit'
+    when 'life-period-tee-white'
+      assign fallback_prefix = 'white-tee-male'
+      assign fallback_count = 6
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'White'
+      assign fallback_fit = 'Unisex fit'
+    when 'basic-white-tee-female'
+      assign fallback_prefix = 'white-tee-female'
+      assign fallback_count = 6
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'White'
+      assign fallback_fit = 'Female fit'
+    when 'concrete-gray-tee-male'
+      assign fallback_prefix = 'gray-tee-male'
+      assign fallback_count = 7
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Gray'
+      assign fallback_fit = 'Male fit'
+    when 'concrete-gray-tee-female'
+      assign fallback_prefix = 'gray-tee-female'
+      assign fallback_count = 8
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Gray'
+      assign fallback_fit = 'Female fit'
+    when 'babyblue-tee-male'
+      assign fallback_prefix = 'babyblue-tee-male'
+      assign fallback_count = 2
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Baby Blue'
+      assign fallback_fit = 'Male fit'
+    when 'babyblue-tee-female'
+      assign fallback_prefix = 'babyblue-tee-female'
+      assign fallback_count = 4
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Baby Blue'
+      assign fallback_fit = 'Female fit'
+    when 'black-polo-unisex'
+      assign fallback_prefix = 'black-polo-unisex'
+      assign fallback_count = 6
+      assign fallback_type = 'Polo'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Unisex fit'
+    when 'gray-polo-female'
+      assign fallback_prefix = 'gray-polo-female'
+      assign fallback_count = 4
+      assign fallback_type = 'Polo'
+      assign fallback_color = 'Gray'
+      assign fallback_fit = 'Female fit'
+    when 'matching-living-fit'
+      assign fallback_prefix = 'matching-fit'
+      assign fallback_count = 4
+      assign fallback_type = 'Matching Outfit'
+      assign fallback_color = 'Black / White'
+      assign fallback_fit = 'Unisex set'
+    when 'white-basic-unisex'
+      assign fallback_prefix = 'white-basic-unisex'
+      assign fallback_count = 5
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'White'
+      assign fallback_fit = 'Unisex fit'
+    when 'stitches-handmade-detail'
+      assign fallback_prefix = 'stitches-handmade'
+      assign fallback_count = 2
+      assign fallback_type = 'Detail'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Handmade detail'
+  endcase
+%}
+<section class="product-page section-pad">
+  <div class="product-page__gallery">
+    {% if product.media.size > 0 %}
+      {% for media in product.media %}
+      {% liquid
+        assign media_loading = 'lazy'
+        if forloop.first
+          assign media_loading = 'eager'
+        endif
+      %}
+      {{ media | image_url: width: 1300 | image_tag: widths: '420,720,960,1300', sizes: '(min-width: 990px) 58vw, 100vw', loading: media_loading, alt: product.title }}
+      {% endfor %}
+    {% else %}
+      {% for index in (1..8) %}
+        {% if index <= fallback_count %}
+          {% assign fallback_image = fallback_prefix | append: '-' | append: index | append: '.jpg' %}
+          <img src="{{ fallback_image | asset_url }}" alt="{{ product.title | default: 'THELIVINGSTOP product' | escape }} view {{ index }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="product-page__summary">
+    <p class="eyebrow">Every piece carries the red full stop.</p>
+    <h1>{{ product.title | default: 'THELIVINGSTOP Premium Piece' }}</h1>
+    {% if product %}{% render 'price', product: product %}{% else %}<div class="price"><span>$88.00</span></div>{% endif %}
+    <div class="product-facts">
+      <span>{{ fallback_type }}</span>
+      <span>{{ fallback_color }}</span>
+      <span>{{ fallback_fit }}</span>
+    </div>
+    <product-form>
+      {% form 'product', product, class: 'product-form' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <fieldset class="product-option">
+              <legend>{{ option.name }}</legend>
+              {% for value in option.values %}
+                <label><input type="radio" name="options[{{ option.name }}]" value="{{ value | escape }}" data-option-position="{{ option.position }}" {% if option.selected_value == value %}checked{% endif %}> <span>{{ value }}</span></label>
+              {% endfor %}
+            </fieldset>
+          {% endfor %}
+        {% endunless %}
+        <label class="quantity-label">Quantity <input type="number" name="quantity" value="1" min="1"></label>
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button class="tls-button tls-button--primary" type="submit">Add to cart</button>
+        {{ form | payment_button }}
+        <script type="application/json" data-product-variants>{{ product.variants | json }}</script>
+      {% endform %}
+    </product-form>
+    <details class="product-accordion" open><summary>Quality notes</summary><p>Heavyweight fabric, durable construction, ethical production, and a strict anti-child-labor standard.</p></details>
+    <details class="product-accordion"><summary>Size guide</summary><p>Designed for a relaxed unisex fit. Choose your usual size for structure or size up for a wider streetwear shape.</p></details>
+    <details class="product-accordion"><summary>Mission note</summary><p>Your purchase helps fund Living Kits for orphan children and orphan animals.</p></details>
+    <details class="product-accordion" open><summary>Material</summary><p>Premium cotton texture, visible stitching, and resilient everyday structure from THELIVINGSTOP's local material references.</p></details>
+    <div class="material-strip">
+      <img src="{{ 'material-heavy-cotton.jpg' | asset_url }}" alt="THELIVINGSTOP heavyweight cotton material" loading="lazy">
+      <img src="{{ 'material-stitch.jpg' | asset_url }}" alt="THELIVINGSTOP stitch and construction material" loading="lazy">
+      <img src="{{ 'material-texture.jpg' | asset_url }}" alt="THELIVINGSTOP fabric texture" loading="lazy">
+    </div>
+  </div>
+</section>
+<div class="mobile-atc"><button class="tls-button tls-button--primary" type="button" data-scroll-product-form>Add to cart</button></div>
+{% schema %}
+{"name":"Main product"}
+{% endschema %}

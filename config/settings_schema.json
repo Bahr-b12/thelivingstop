@@ -1,0 +1,29 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "THELIVINGSTOP",
+    "theme_version": "1.0.0",
+    "theme_author": "OpenAI Codex",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://shopify.dev/docs/storefronts/themes"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "color", "id": "brand_red", "label": "Full-stop red", "default": "#BF0404" },
+      { "type": "color", "id": "brand_black", "label": "Brand black", "default": "#050505" },
+      { "type": "color", "id": "brand_white", "label": "Crisp white", "default": "#FAFAF7" }
+    ]
+  },
+  {
+    "name": "Full-stop animations",
+    "settings": [
+      { "type": "checkbox", "id": "enable_full_stop_animation", "label": "Enable random full-stop moments", "default": true },
+      { "type": "range", "id": "animation_min_interval", "label": "Minimum interval seconds", "min": 3, "max": 20, "step": 1, "default": 4 },
+      { "type": "range", "id": "animation_max_interval", "label": "Maximum interval seconds", "min": 6, "max": 30, "step": 1, "default": 12 },
+      { "type": "range", "id": "animation_max_size", "label": "Maximum size pixels", "min": 24, "max": 80, "step": 4, "default": 56 },
+      { "type": "text", "id": "animation_allowed_pages", "label": "Allowed page types", "default": "index,collection,product,page", "info": "Comma-separated Shopify request page types." }
+    ]
+  }
+]
