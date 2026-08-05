@@ -431,6 +431,7 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
   .site-header__inner { gap: 10px; }
   .site-header__wishlist, .site-header__actions a[href*="account"] { display: none; }
   .site-logo__image { width: 126px; }
+  .site-logo__image--fallback { width: 46px; height: 46px; object-fit: contain; }
   .hero { min-height: calc(92svh - var(--tls-header)); }
   .hero h1 { font-size: clamp(48px, 19vw, 86px); }
   .hero { min-height: max(620px, calc(100svh - var(--tls-header))); }
