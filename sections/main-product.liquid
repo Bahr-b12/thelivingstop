@@ -134,7 +134,6 @@
         <button class="tls-button tls-button--primary" type="submit" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
           {% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}
         </button>
-        {{ form | payment_button }}
         <script type="application/json" data-product-variants>{{ product.variants | json }}</script>
       {% endform %}
     </product-form>
