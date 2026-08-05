@@ -1,7 +1,8 @@
+{% assign clean_heading = section.settings.heading | remove: '**' %}
 <section class="trend-shortcuts section-pad">
   <div class="section-heading">
     <p class="eyebrow">Trending now</p>
-    <h2>{{ section.settings.heading }}</h2>
+    <h2>{{ clean_heading }}</h2>
   </div>
   <div class="trend-shortcuts__grid">
     {% for block in section.blocks %}
@@ -11,7 +12,7 @@
         {% else %}
           <img src="{{ block.settings.asset_name | default: 'black-tee-male-1.jpg' | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
         {% endif %}
-        <span>{{ block.settings.title }}</span>
+        <span>{{ block.settings.title | remove: '**' }}</span>
       </a>
     {% endfor %}
   </div>

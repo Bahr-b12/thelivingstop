@@ -1,14 +1,15 @@
+{% assign clean_heading = section.settings.heading | remove: '**' %}
 <section class="featured-collections section-pad">
   <div class="section-heading section-heading--split">
-    <div><p class="eyebrow">Shop by category</p><h2>{{ section.settings.heading }}</h2></div>
+    <div><p class="eyebrow">Shop by category</p><h2>{{ clean_heading }}</h2></div>
     {% render 'button', label: 'View all', href: routes.all_products_collection_url, style: 'secondary' %}
   </div>
   <div class="category-grid">
     {% for block in section.blocks %}
       <a class="category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
         <img src="{{ block.settings.asset_name | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
-        <span>{{ block.settings.title }}</span>
-        <small>{{ block.settings.note }}</small>
+        <span>{{ block.settings.title | remove: '**' }}</span>
+        <small>{{ block.settings.note | remove: '**' }}</small>
       </a>
     {% endfor %}
   </div>

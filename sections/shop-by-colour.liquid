@@ -3,7 +3,7 @@
   <div class="colour-row">
     {% for block in section.blocks %}
       <a href="{{ block.settings.link }}" class="colour-chip" {{ block.shopify_attributes }}>
-        <span style="background:{{ block.settings.color }}"></span>{{ block.settings.title }}
+        <span style="background:{{ block.settings.color }}"></span>{{ block.settings.title | remove: '**' }}
       </a>
     {% endfor %}
   </div>
