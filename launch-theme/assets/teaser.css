@@ -29,7 +29,6 @@ button, a, input { -webkit-tap-highlight-color: transparent; }
 .launch-hero h1 { margin: 0; font-size: clamp(42px, 6vw, 82px); line-height: .88; letter-spacing: 0; text-transform: uppercase; }
 .launch-hero__logo { display: block; width: min(100%, 680px); height: clamp(170px, 19vw, 240px); margin-inline: auto; object-fit: cover; object-position: center; }
 .launch-date { margin: 14px 0 0; color: var(--launch-red); font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
-.launch-hero__copy { margin: 16px 0 0; color: var(--launch-muted); font-size: clamp(16px, 1.7vw, 21px); font-weight: 700; text-transform: uppercase; }
 .launch-countdown { width: min(100%, 720px); display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 26px auto 0; padding: 20px 10px; border: 1px solid rgba(191,5,5,.7); background: rgba(255,255,255,.62); box-shadow: 0 12px 36px rgba(5,5,5,.08); }
 .launch-countdown div { min-width: 0; padding: 0 18px; border-right: 1px solid var(--launch-line); }
 .launch-countdown div:last-child { border-right: 0; }
