@@ -19,6 +19,12 @@
             assign cart_image = item.image | default: item.product.featured_image
             assign cart_fallback = 'black-tee-male-1.jpg'
             case item.product.handle
+              when 'hand-stitched-polo'
+                assign cart_fallback = 'hand-stitched-polo-1.jpg'
+              when 'hand-stitched-round-tee'
+                assign cart_fallback = 'hand-stitched-round-tee-1.jpg'
+              when 'stitched-tee'
+                assign cart_fallback = 'stitched-tee-1.jpg'
               when 'life-period-tee-black', 'basic-black-tee-female'
                 assign cart_fallback = 'black-tee-male-1.jpg'
               when 'life-period-tee-white', 'basic-white-tee-female'

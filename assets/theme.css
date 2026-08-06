@@ -459,3 +459,19 @@ select, input, textarea { border: 1px solid var(--tls-line); background: white; 
 @media (prefers-reduced-motion: reduce) {
   *, *:before, *:after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+.shipping-page__intro { max-width: 680px; margin-bottom: 48px; }
+.shipping-page__intro h1 { margin: 0 0 16px; font-size: clamp(42px, 7vw, 88px); line-height: .92; text-transform: uppercase; }
+.shipping-page__intro > p:last-child { max-width: 540px; color: var(--tls-muted, rgba(5,5,5,.66)); font-size: 17px; line-height: 1.6; }
+.shipping-table-wrap { overflow-x: auto; border-top: 1px solid var(--tls-line, rgba(5,5,5,.18)); border-bottom: 1px solid var(--tls-line, rgba(5,5,5,.18)); }
+.shipping-table { width: 100%; min-width: 760px; border-collapse: collapse; text-align: left; }
+.shipping-table caption { padding: 16px 0; color: var(--tls-red); font-size: 11px; font-weight: 800; letter-spacing: .14em; text-align: left; text-transform: uppercase; }
+.shipping-table th, .shipping-table td { padding: 18px 14px; border-top: 1px solid var(--tls-line, rgba(5,5,5,.18)); font-size: 13px; }
+.shipping-table thead th { color: var(--tls-muted, rgba(5,5,5,.66)); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.shipping-table tbody th { font-weight: 700; }
+.shipping-table tbody td { color: var(--tls-muted, rgba(5,5,5,.66)); }
+.shipping-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+.shipping-notes article { padding-top: 16px; border-top: 2px solid var(--tls-red); }
+.shipping-notes h2 { margin: 0 0 10px; font-size: 14px; text-transform: uppercase; }
+.shipping-notes p { margin: 0; color: var(--tls-muted, rgba(5,5,5,.66)); font-size: 13px; line-height: 1.6; }
+.site-logo__image--mark { width: 42px; height: 42px; object-fit: contain; }
+@media (max-width: 720px) { .shipping-page__intro { margin-bottom: 30px; } .shipping-notes { grid-template-columns: 1fr; gap: 24px; } }

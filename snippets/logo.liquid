@@ -1,13 +1,25 @@
 {% liquid
   assign logo_asset = 'logo-white.png'
+  assign logo_class = 'site-logo__image site-logo__image--fallback'
+  assign logo_width = 180
+  assign logo_height = 51
+  if mark
+    assign logo_asset = 'logo-mark.png'
+    assign logo_class = 'site-logo__image site-logo__image--mark'
+    assign logo_width = 42
+    assign logo_height = 42
+  endif
   if tone == 'dark'
     assign logo_asset = 'logo-dark.png'
   endif
+  if mark
+    assign logo_asset = 'logo-mark.png'
+  endif
 %}
 <a class="site-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
-  {% if settings.logo != blank %}
+  {% if settings.logo != blank and mark != true %}
     {{ settings.logo | image_url: width: 360 | image_tag: widths: '140,180,240,360', class: 'site-logo__image', alt: shop.name, loading: 'eager' }}
   {% else %}
-    <img src="{{ logo_asset | asset_url }}" class="site-logo__image site-logo__image--fallback" width="180" height="51" alt="THELIVINGSTOP">
+    <img src="{{ logo_asset | asset_url }}" class="{{ logo_class }}" width="{{ logo_width }}" height="{{ logo_height }}" alt="THELIVINGSTOP">
   {% endif %}
 </a>
