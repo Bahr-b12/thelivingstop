@@ -14,9 +14,9 @@ Production-ready Shopify Online Store 2.0 theme for THELIVINGSTOP.
 - `layout/theme.liquid`
 - JSON templates for home, collection, product, cart, about, mission, contact, and early-access signup pages
 - Section groups for sticky header and footer
-- Reusable snippets for logo, product cards, price, buttons, cart drawer, red-circle accent, and animation layer
+- Reusable snippets for logo, product cards, price, buttons, cart drawer, and red-circle accent
 - `assets/theme.css` and `assets/theme.js`
-- Theme settings for brand colors, logo, and signature SVG motion controls
+- Theme settings for brand colors and logo
 
 ## Assets
 
@@ -63,3 +63,7 @@ The theme includes a cart drawer, cart page, subtotal, quantity updates, remove 
 ## Brand Notes
 
 Keep Montserrat as the primary typeface. Keep the red circle #BF0404. Do not recolor the full logo red, and do not use logo typography without the red circle. Mission copy should stay optimistic and lifestyle-led: fashion first, ethical mission built into the DNA.
+
+## Launch Countdown
+
+The standalone 15 AUG countdown theme lives at D:\SHopify\thelivingstop-launch-theme and is packaged as D:\SHopify\THELIVINGSTOP-launch-countdown-theme.zip. It includes four launch videos, a configurable countdown, and Shopify contact signup.

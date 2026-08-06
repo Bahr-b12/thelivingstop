@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <title>{{ page_title | default: 'THELIVINGSTOP / 15 AUG' }}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+    {{ content_for_header }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    {{ 'teaser.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body>
+    <a class="teaser-skip" href="#LaunchSignup">Skip to signup form</a>
+    {{ content_for_layout }}
+    <script src="{{ 'teaser.js' | asset_url }}" defer></script>
+  </body>
+</html>
