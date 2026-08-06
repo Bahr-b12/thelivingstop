@@ -7,6 +7,24 @@
   assign title_handle = product.title | handle
   assign product_key = product.handle | default: title_handle
   case product_key
+    when 'hand-stitched-polo'
+      assign fallback_prefix = 'hand-stitched-polo'
+      assign fallback_count = 6
+      assign fallback_type = 'Polo'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Unisex fit'
+    when 'hand-stitched-round-tee'
+      assign fallback_prefix = 'hand-stitched-round-tee'
+      assign fallback_count = 4
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Unisex fit'
+    when 'stitched-tee'
+      assign fallback_prefix = 'stitched-tee'
+      assign fallback_count = 2
+      assign fallback_type = 'T-Shirt'
+      assign fallback_color = 'Black'
+      assign fallback_fit = 'Unisex fit'
     when 'life-period-tee-black'
       assign fallback_prefix = 'black-tee-male'
       assign fallback_count = 7
@@ -112,6 +130,11 @@
     <p class="eyebrow">Every piece carries the red full stop.</p>
     <h1>{{ product.title | default: 'THELIVINGSTOP Premium Piece' }}</h1>
     {% if product %}{% render 'price', product: product %}{% else %}<div class="price"><span>$88.00</span></div>{% endif %}
+    {% if product.description != blank %}
+      <div class="product-description rte">{{ product.description }}</div>
+    {% else %}
+      <p class="product-description">Long lasting construction with a considered, hand-finished feel.</p>
+    {% endif %}
     <div class="product-facts">
       <span>{{ fallback_type }}</span>
       <span>{{ fallback_color }}</span>

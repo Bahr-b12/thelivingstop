@@ -3,6 +3,12 @@
   assign media = card_product.featured_media
   assign fallback_prefix = blank
   case card_product.handle
+    when 'hand-stitched-polo'
+      assign fallback_prefix = 'hand-stitched-polo'
+    when 'hand-stitched-round-tee'
+      assign fallback_prefix = 'hand-stitched-round-tee'
+    when 'stitched-tee'
+      assign fallback_prefix = 'stitched-tee'
     when 'life-period-tee-black'
       assign fallback_prefix = 'black-tee-male'
     when 'basic-black-tee-female'

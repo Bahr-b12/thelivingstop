@@ -8,9 +8,9 @@
         "new-in": { "type": "shortcut", "settings": { "title": "New In", "link": "/collections/new-in", "asset_name": "matching-outfits-1.jpg" } },
         "t-shirts": { "type": "shortcut", "settings": { "title": "T-Shirts", "link": "/collections/t-shirts", "asset_name": "white-tee-male-1.jpg" } },
         "polos": { "type": "shortcut", "settings": { "title": "Polos", "link": "/collections/polos", "asset_name": "black-polo-1.jpg" } },
-        "matching-fits": { "type": "shortcut", "settings": { "title": "Matching Fits", "link": "/collections/matching-fits", "asset_name": "matching-outfits-2.jpg" } }
+        "handmade": { "type": "shortcut", "settings": { "title": "Handmade Details", "link": "/collections/all", "asset_name": "hand-stitched-round-tee-1.jpg" } }
       },
-      "block_order": ["new-in", "t-shirts", "polos", "matching-fits"]
+      "block_order": ["new-in", "t-shirts", "polos", "handmade"]
     },
     "showcase": {
       "type": "product-showcase",
@@ -22,23 +22,18 @@
       "settings": { "heading": "Streetwear, simplified." },
       "blocks": {
         "t-shirts": { "type": "collection", "settings": { "title": "T-Shirts", "note": "Heavy cotton. Everyday motion.", "link": "/collections/t-shirts", "asset_name": "white-tee-male-1.jpg" } },
-        "hoodies": { "type": "collection", "settings": { "title": "Hoodies", "note": "Weight, warmth, full-stop detail.", "link": "/collections/hoodies", "asset_name": "product-concrete-1.jpg" } },
-        "denim": { "type": "collection", "settings": { "title": "Denim", "note": "Durable shape. Red rivet energy.", "link": "/collections/denim", "asset_name": "product-concrete-3.jpg" } },
         "polos": { "type": "collection", "settings": { "title": "Polos", "note": "Clean structure. Easy presence.", "link": "/collections/polos", "asset_name": "black-polo-1.jpg" } },
-        "matching": { "type": "collection", "settings": { "title": "Matching Outfits", "note": "Unisex fits made to share space.", "link": "/collections/matching-fits", "asset_name": "matching-outfits-1.jpg" } }
+        "handmade": { "type": "collection", "settings": { "title": "Handmade Details", "note": "Crafted slowly. Made to last.", "link": "/collections/all", "asset_name": "hand-stitched-round-tee-1.jpg" } }
       },
-      "block_order": ["t-shirts", "hoodies", "denim", "polos", "matching"]
+      "block_order": ["t-shirts", "polos", "handmade"]
     },
     "colours": {
       "type": "shop-by-colour",
       "blocks": {
         "black": { "type": "colour", "settings": { "title": "Pitch Black", "color": "#050505", "link": "/collections/all" } },
-        "white": { "type": "colour", "settings": { "title": "Crisp White", "color": "#f7f4ef", "link": "/collections/all" } },
-        "grey": { "type": "colour", "settings": { "title": "Concrete Grey", "color": "#9b9b94", "link": "/collections/all" } },
-        "blue": { "type": "colour", "settings": { "title": "Baby Blue", "color": "#a7b9d9", "link": "/collections/all" } },
         "red": { "type": "colour", "settings": { "title": "Full Stop Red", "color": "#BF0404", "link": "/collections/all" } }
       },
-      "block_order": ["black", "white", "grey", "blue", "red"]
+      "block_order": ["black", "red"]
     },
     "mission": { "type": "mission-band" },
     "community": { "type": "community-grid" }

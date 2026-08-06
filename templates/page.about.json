@@ -1,7 +1,6 @@
 {
   "sections": {
-    "story": { "type": "brand-story", "settings": { "heading": "THE LIVING plus THE STOP.", "copy": "THE LIVING means life, movement, vibrancy, and community. THE STOP is the red circle: a hard stop on harmful systems. Together, they mean choosing kindness, quality, and conscious living." } },
-    "campaign": { "type": "editorial-campaign", "settings": { "heading": "Life. Period.", "copy": "Once you choose this way of living, you need nothing else. Premium streetwear first. A serious ethical mission built into the DNA." } }
+    "story": { "type": "brand-story", "settings": { "kicker": "About us", "heading": "True luxury begins with humanity.", "copy": "The Living Stop is a cause driven fashion brand creates premium essentials with purpose on a simple belief: true luxury begins with humanity. Designed to last, crafted with care, and inspired by a simple idea: stop, notice, and remember the lives around us." } }
   },
-  "order": ["story", "campaign"]
+  "order": ["story"]
 }
